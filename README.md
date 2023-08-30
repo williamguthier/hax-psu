@@ -1,10 +1,6 @@
-<p align="center">
-  <img width="200" src="https://open-wc.org/hero.png"></img>
-</p>
+# hax.psu
 
-## Open-wc Starter App
-
-[![Built with open-wc recommendations](https://img.shields.io/badge/built%20with-open--wc-blue.svg)](https://github.com/open-wc)
+App backend and files so that we can build out the SPA for hax.psu to communicate about the project
 
 ## Quickstart
 
