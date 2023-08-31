@@ -1050,6 +1050,11 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
+"@juggle/resize-observer@^3.0.0":
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/@juggle/resize-observer/-/resize-observer-3.4.0.tgz#08d6c5e20cf7e4cc02fd181c4b0c225cd31dbb60"
+  integrity sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==
+
 "@lit-labs/react@^1.1.1":
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@lit-labs/react/-/react-1.2.1.tgz#5b421502cdf68a3639dec431318eeed2285f1c0e"
@@ -1067,6 +1072,21 @@
   dependencies:
     "@lit-labs/ssr-dom-shim" "^1.0.0"
 
+"@lrnwebcomponents/grid-plate@^7.0.16":
+  version "7.0.16"
+  resolved "https://registry.yarnpkg.com/@lrnwebcomponents/grid-plate/-/grid-plate-7.0.16.tgz#cef55dc491ad26234cee1366843b988cf786502e"
+  integrity sha512-1WqxT1TbulHt5ZcJykHdkzaW0nJkvnkSrvSWQn/fvQyqMSDCZTJ90BoGxvSsEXqlExj2Ls793Str/N0G8lzZsg==
+  dependencies:
+    "@lrnwebcomponents/hax-body-behaviors" "^7.0.16"
+    "@lrnwebcomponents/responsive-grid" "^7.0.16"
+    "@lrnwebcomponents/utils" "^7.0.16"
+    lit "^2.7.6"
+
+"@lrnwebcomponents/hax-body-behaviors@^7.0.16":
+  version "7.0.16"
+  resolved "https://registry.yarnpkg.com/@lrnwebcomponents/hax-body-behaviors/-/hax-body-behaviors-7.0.16.tgz#c4fc7cbbbb1815b3c82aa1457795042048fc8bf7"
+  integrity sha512-T7Wj7AP4/k1KLTFLgsrJH58+aO31jdJUK0NUSN2eZ88Fyv1uQr9VDGLKuued6FIhehklN/9VAz1iBlZha2+Dbw==
+
 "@lrnwebcomponents/play-list@^7.0.16":
   version "7.0.16"
   resolved "https://registry.yarnpkg.com/@lrnwebcomponents/play-list/-/play-list-7.0.16.tgz#30f6ab5e8a08e666a9006a46b776dbc058e533d6"
@@ -1075,6 +1095,22 @@
     "@lrnwebcomponents/utils" "^7.0.16"
     "@shoelace-style/shoelace" "2.6.0"
     lit "^2.7.5"
+
+"@lrnwebcomponents/responsive-grid@^7.0.16":
+  version "7.0.16"
+  resolved "https://registry.yarnpkg.com/@lrnwebcomponents/responsive-grid/-/responsive-grid-7.0.16.tgz#52aa4decc367ae89c37f4d1d0f53ac87917c3cd4"
+  integrity sha512-3JbRnxuLkWjyjwAUbNe2oKbXm5gJPdd1E8kyD+BkuiChX9vZH3ennKEwemGH4hLsCQouGtzHdake85MeoscEwQ==
+  dependencies:
+    "@lrnwebcomponents/responsive-utility" "^7.0.16"
+    lit "^2.7.6"
+
+"@lrnwebcomponents/responsive-utility@^7.0.16":
+  version "7.0.16"
+  resolved "https://registry.yarnpkg.com/@lrnwebcomponents/responsive-utility/-/responsive-utility-7.0.16.tgz#072fe090a4d9ccb06887c86753b4273e04a65768"
+  integrity sha512-G9Cb95yMFd5/a0vHOUygEwy2vpjfXQ8SMtW8GqIsYPNOBotGxgbHBYg56vo/2t3D4113VRG5yVR2y0JuD8x2pA==
+  dependencies:
+    "@juggle/resize-observer" "^3.0.0"
+    lit "^2.7.6"
 
 "@lrnwebcomponents/utils@^7.0.16":
   version "7.0.16"
@@ -2895,7 +2931,7 @@ lit-html@^2.8.0:
   dependencies:
     "@types/trusted-types" "^2.0.2"
 
-lit@^2.0.2, lit@^2.7.5:
+lit@^2.0.2, lit@^2.7.5, lit@^2.7.6:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/lit/-/lit-2.8.0.tgz#4d838ae03059bf9cafa06e5c61d8acc0081e974e"
   integrity sha512-4Sc3OFX9QHOJaHbmTMk28SYgVxLN3ePDjg7hofEft2zWlehFL3LiAuapWc4U/kYwMYJSh2hTCPZ6/LIC7ii0MA==

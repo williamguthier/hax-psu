@@ -11,6 +11,7 @@
     "start": "web-dev-server"
   },
   "dependencies": {
+    "@lrnwebcomponents/grid-plate": "^7.0.16",
     "@lrnwebcomponents/play-list": "^7.0.16",
     "lit": "^2.0.2"
   },

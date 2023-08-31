@@ -1,5 +1,6 @@
 import { LitElement, html, css } from 'lit';
 import "@lrnwebcomponents/play-list/play-list.js";
+import "@lrnwebcomponents/grid-plate/grid-plate.js";
 
 
 export class HaxPsu extends LitElement {
@@ -22,13 +23,61 @@ export class HaxPsu extends LitElement {
         justify-content: flex-start;
         font-size: calc(10px + 2vmin);
         color: #1a2b42;
-        max-width: 960px;
+        max-width: 1300px;
         margin: 0 auto;
         text-align: center;
+        background-color: white;
+      }
+
+      .logo {
+        width: 200px;
+        top: 0;
+        left: 0;
+      }
+
+      header {
+        width: 100%;
+        height: 100px;
+        display: flex;
+        padding: 16px;
+        background-color: #1a2b42;
       }
 
       main {
         flex-grow: 1;
+        padding: 32px;
+      }
+
+      main h1,
+      main h2 {
+        text-align: left;
+      }
+
+      .tease-link {
+        text-decoration: none;
+        margin: 16px auto;
+        display: block;
+      }
+
+      .tease-link button {
+        transition: all 0.3s ease-in-out;
+        background-color: orange;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        font-size: 40px;
+        cursor: pointer;
+      }
+
+      .tease-link button:hover,
+      .tease-link button:focus {
+        background-color: #ff8c00;
+      }
+
+      .tease-link button:active {
+        background-color: black;
+        color: #ff8c00;
       }
 
       .container {
@@ -57,35 +106,57 @@ export class HaxPsu extends LitElement {
 
   constructor() {
     super();
-    this.title = 'HAX Content Management System';
+    this.title = 'HAX @ PSU';
+    this.subTitle = 'Content Management System';
   }
 
   render() {
     return html`
-        <main>
-            <h1>${this.title}</h1>
-            <button>Start building with HAX</button>
-            <div class="container">
-              <div class="square">
-                  <h2>199 sites</h2>
-                  <p>Built with HAX</p>
-              </div>
-              <div class="square square-2">
-                  <h2>143 users</h2>
-                  <p>Building with HAX</p>
-              </div>
-              <div class="square square-3">
-                  <h2>7,203 pages</h2>
-                  <p>of unique content</p>
-              </div>
-            </div>
-            <play-list>
-              <template>
-                <div>Cool content</div>
-                <div>more example content</div>
-              </template>
-            </play-list>
-        </main>
+      <header>
+        <a href="https://psu.edu/"><img src="https://sites.psu.edu/files/2023/03/Penn-State-Mark.png" alt="Penn State Logo" class="logo" /></a>
+      </header>
+      <main>
+        <h1>${this.title}</h1>
+        <h2>${this.subTitle}</h2>
+        <p>Build your own website fast, free, forever, with HAX</p>
+        <h3>Part of Penn State?</h3>
+        <a class="tease-link" href="https://hax.psu.edu/login.php"><button>Start building with HAX</button></a>
+
+        <h2>HAX: By the numbers</h2>
+        <div class="container">
+          <div class="square">
+              <h2>199 sites</h2>
+              <p>Built with HAX</p>
+          </div>
+          <div class="square square-2">
+              <h2>143 users</h2>
+              <p>Building with HAX</p>
+          </div>
+          <div class="square square-3">
+              <h2>7,203 pages</h2>
+              <p>of unique content</p>
+          </div>
+        </div>
+        <h2>Who is HAX for?</h2>
+        <grid-plate layout="1-1-1">
+          <p slot="col-1">
+            <strong>Faculty</strong> - Build a course website, a research website, or a personal website
+          </p>
+          <p slot="col-2">
+            <strong>Students</strong> - Build a portfolio, a resume, or a personal website
+          </p>
+          <p slot="col-3">
+            <strong>Staff</strong> - Build a department website, a project website, or a personal website
+          </p>
+        </grid-plate>
+        <h2>HAX in action</h2>
+        <play-list>
+          <template>
+            <div>Cool content</div>
+            <div>more example content</div>
+          </template>
+        </play-list>
+    </main>
     `;
   }
 }
