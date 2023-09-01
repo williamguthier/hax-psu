@@ -1,12 +1,15 @@
 import { LitElement, html, css } from 'lit';
 import "@lrnwebcomponents/play-list/play-list.js";
 import "@lrnwebcomponents/grid-plate/grid-plate.js";
+import "@lrnwebcomponents/count-up/count-up.js";
 
 
 export class HaxPsu extends LitElement {
   static get properties() {
     return {
       title: { type: String },
+      subTitle: { type: String },
+      stats: { type: Object }
     };
   }
 
@@ -108,6 +111,13 @@ export class HaxPsu extends LitElement {
     super();
     this.title = 'HAX @ PSU';
     this.subTitle = 'Content Management System';
+    this.stats = {};
+    fetch('http://localhost:3000/api/stats').then((res) => {
+      return res.json();
+    }
+    ).then((data) => {
+      this.stats = data.data.overall;
+    });
   }
 
   render() {
@@ -125,15 +135,18 @@ export class HaxPsu extends LitElement {
         <h2>HAX: By the numbers</h2>
         <div class="container">
           <div class="square">
-              <h2>199 sites</h2>
+          <count-up end="${this.stats.site_count}"></count-up>
+              <h2>${this.stats.site_count} sites</h2>
               <p>Built with HAX</p>
           </div>
           <div class="square square-2">
-              <h2>143 users</h2>
+          <count-up end="${this.stats.user_count}"></count-up>
+              <h2>${this.stats.user_count} users</h2>
               <p>Building with HAX</p>
           </div>
           <div class="square square-3">
-              <h2>7,203 pages</h2>
+          <count-up end="${this.stats.total_pages}"></count-up>
+              <h2>${this.stats.total_pages} pages</h2>
               <p>of unique content</p>
           </div>
         </div>
