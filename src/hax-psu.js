@@ -9,7 +9,8 @@ export class HaxPsu extends LitElement {
     return {
       title: { type: String },
       subTitle: { type: String },
-      stats: { type: Object }
+      stats: { type: Object },
+      image: { type: String }
     };
   }
 
@@ -112,6 +113,7 @@ export class HaxPsu extends LitElement {
     this.title = 'HAX @ PSU';
     this.subTitle = 'Content Management System';
     this.stats = {};
+    this.image = '';
     let base = '';
     if (
       window.location.origin.startsWith("http://127.0.0.1") ||
@@ -135,7 +137,7 @@ export class HaxPsu extends LitElement {
         <a href="https://psu.edu/"><img src="https://sites.psu.edu/files/2023/03/Penn-State-Mark.png" alt="Penn State Logo" class="logo" /></a>
       </header>
       <main>
-        <img src="" alt="HAX the web mascot" />
+        <img src="${this.image}" alt="HAX the web mascot" />
         <h1>${this.title}</h1>
         <h2>${this.subTitle}</h2>
         <p>Build your own website fast, free, forever, with HAX</p>
