@@ -112,7 +112,16 @@ export class HaxPsu extends LitElement {
     this.title = 'HAX @ PSU';
     this.subTitle = 'Content Management System';
     this.stats = {};
-    fetch('http://localhost:3000/api/stats').then((res) => {
+    let base = '';
+    if (
+      window.location.origin.startsWith("http://127.0.0.1") ||
+      window.location.origin.startsWith("http://localhost")
+    ) {
+      base = window.location.origin
+        .replace(/127.0.0.1:8(.*)/, "localhost:3000")
+        .replace(/localhost:8(.*)/, "localhost:3000");
+    }
+    fetch(`${base}/api/stats`).then((res) => {
       return res.json();
     }
     ).then((data) => {
@@ -126,6 +135,7 @@ export class HaxPsu extends LitElement {
         <a href="https://psu.edu/"><img src="https://sites.psu.edu/files/2023/03/Penn-State-Mark.png" alt="Penn State Logo" class="logo" /></a>
       </header>
       <main>
+        <img src="" alt="HAX the web mascot" />
         <h1>${this.title}</h1>
         <h2>${this.subTitle}</h2>
         <p>Build your own website fast, free, forever, with HAX</p>
