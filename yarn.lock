@@ -1072,12 +1072,26 @@
   dependencies:
     "@lit-labs/ssr-dom-shim" "^1.0.0"
 
+"@lrnwebcomponents/a11y-utils@^7.0.16":
+  version "7.0.16"
+  resolved "https://registry.yarnpkg.com/@lrnwebcomponents/a11y-utils/-/a11y-utils-7.0.16.tgz#e35eec0ac4f49faa5aa02545567229e747b0a1f9"
+  integrity sha512-k/dmv7I7TuOfe7EPMYiRliGQatiQKuPs05GProF0lTzB0tN5aKcNDSbwohQzA0d2y+2LEXttj0cccp43rVRouQ==
+  dependencies:
+    lit "^2.7.6"
+
 "@lrnwebcomponents/count-up@^7.0.16":
   version "7.0.16"
   resolved "https://registry.yarnpkg.com/@lrnwebcomponents/count-up/-/count-up-7.0.16.tgz#f229fab73ac47e8a9692029b72f51b88f10b1ca1"
   integrity sha512-lT1pSaHV1gfoPwhoK9RBrzuQDdfOvyBOudpSySrDhWjauX6pMi8INvGs5BcOBzDHp1JrFt8ZtrnVuCs0pbQLFA==
   dependencies:
     "@lrnwebcomponents/intersection-element" "^7.0.4"
+    lit "^2.7.6"
+
+"@lrnwebcomponents/future-terminal-text@^7.0.16":
+  version "7.0.16"
+  resolved "https://registry.yarnpkg.com/@lrnwebcomponents/future-terminal-text/-/future-terminal-text-7.0.16.tgz#f5161960579b4eaf407084680d49ebd2e4b10ce9"
+  integrity sha512-BFZTBcVOpe/eWJ+blO3ShmUUculWE7boPZDTHxdL59w9h8b7HKrQ3OikUf+MatNTzEKROUN6IYgAu+CCU2VBmw==
+  dependencies:
     lit "^2.7.6"
 
 "@lrnwebcomponents/grid-plate@^7.0.16":
@@ -1099,6 +1113,14 @@
   version "7.0.4"
   resolved "https://registry.yarnpkg.com/@lrnwebcomponents/intersection-element/-/intersection-element-7.0.4.tgz#abf880be084a1b1dca34ca8ba81db047ff7338e0"
   integrity sha512-psoU09Mct0+4M4ZRluOs/QPW5D19jcuJvPDhpGBA95H1nM8xipN04RSYyUnuo/WM4qRP0CJ/8UZo/1smqz4izw==
+
+"@lrnwebcomponents/page-section@^7.0.16":
+  version "7.0.16"
+  resolved "https://registry.yarnpkg.com/@lrnwebcomponents/page-section/-/page-section-7.0.16.tgz#e5b633b699de4584391757676f860cdedbb638ae"
+  integrity sha512-AktfJtTCAxCZfXMxYFFiw1BXGBPmmm5ekZpgo6zmJvfIYzSPFtvyVc5BIxlThTQTPO2HIN8Zz6VpBe7u1is4sA==
+  dependencies:
+    "@lrnwebcomponents/simple-colors" "^7.0.16"
+    lit "^2.8.0"
 
 "@lrnwebcomponents/play-list@^7.0.16":
   version "7.0.16"
@@ -1123,6 +1145,29 @@
   integrity sha512-G9Cb95yMFd5/a0vHOUygEwy2vpjfXQ8SMtW8GqIsYPNOBotGxgbHBYg56vo/2t3D4113VRG5yVR2y0JuD8x2pA==
   dependencies:
     "@juggle/resize-observer" "^3.0.0"
+    lit "^2.7.6"
+
+"@lrnwebcomponents/simple-colors-shared-styles@^7.0.16":
+  version "7.0.16"
+  resolved "https://registry.yarnpkg.com/@lrnwebcomponents/simple-colors-shared-styles/-/simple-colors-shared-styles-7.0.16.tgz#50f6b33acf91bf3863b7ee42011e62d2f7a005dc"
+  integrity sha512-gbBR38xR7uExc1KeeyFsOOx9h+rZSaEzccbjZ6cMgIfGvSVxsPgpuRGhSiwVHTVARSho+MVMIwn3TW2vUek0vQ==
+  dependencies:
+    lit "^2.7.6"
+
+"@lrnwebcomponents/simple-colors@^7.0.16":
+  version "7.0.16"
+  resolved "https://registry.yarnpkg.com/@lrnwebcomponents/simple-colors/-/simple-colors-7.0.16.tgz#439db3554fef418be543e43faaeedc6875770674"
+  integrity sha512-22prt+bF9NFSBr1wFHlLD0J7Lq/4j+18Ay2MuOgV9gdVxhktjUA5cTHi0bJeu/7VKNZNyg5cMb/sp908QOXnqw==
+  dependencies:
+    "@lrnwebcomponents/a11y-utils" "^7.0.16"
+    "@lrnwebcomponents/simple-colors-shared-styles" "^7.0.16"
+    lit "^2.7.6"
+
+"@lrnwebcomponents/simple-cta@^7.0.16":
+  version "7.0.16"
+  resolved "https://registry.yarnpkg.com/@lrnwebcomponents/simple-cta/-/simple-cta-7.0.16.tgz#587495c896a3e3a4910d74d8dadce5167ef5fc69"
+  integrity sha512-rGCXEJvRV0ZSL257a7iUjfF36WuKePDFO/Vv9FF1N7pm18POzUI2UCOuc9N+9UWqOc064SXWxJpoeqxnpwUqsA==
+  dependencies:
     lit "^2.7.6"
 
 "@lrnwebcomponents/utils@^7.0.16":

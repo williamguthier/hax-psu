@@ -2,7 +2,9 @@ import { LitElement, html, css } from 'lit';
 import "@lrnwebcomponents/play-list/play-list.js";
 import "@lrnwebcomponents/grid-plate/grid-plate.js";
 import "@lrnwebcomponents/count-up/count-up.js";
-
+import "@lrnwebcomponents/simple-cta/simple-cta.js";
+import "@lrnwebcomponents/page-section/page-section.js";
+import "@lrnwebcomponents/future-terminal-text/future-terminal-text.js";
 
 export class HaxPsu extends LitElement {
   static get properties() {
@@ -26,8 +28,7 @@ export class HaxPsu extends LitElement {
         align-items: center;
         justify-content: flex-start;
         font-size: calc(10px + 2vmin);
-        color: #1a2b42;
-        max-width: 1300px;
+        color: var(--primary-color-1);
         margin: 0 auto;
         text-align: center;
         background-color: white;
@@ -43,13 +44,24 @@ export class HaxPsu extends LitElement {
         width: 100%;
         height: 100px;
         display: flex;
+        margin-bottom: -100px;
+        z-index: 100;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: "Open Sans",Helvetica,Arial,Lucida,sans-serif;
+      }
+
+      .logo-wrapper {
         padding: 16px;
-        background-color: #1a2b42;
+      }
+
+      .logo-wrapper a {
+        display: block;
       }
 
       main {
         flex-grow: 1;
-        padding: 32px;
       }
 
       main h1,
@@ -91,6 +103,44 @@ export class HaxPsu extends LitElement {
         align-items: center;
         margin: 0 auto;
       }
+
+      .section.top {
+        text-align: left;
+      }
+
+      .section.top h1 .hax {
+        font-weight: bold;
+        font-style: italic;
+        font-family: 'Press Start 2P', sans-serif;
+        font-size: 3rem;
+        display: inline-block;
+        vertical-align: middle;
+        margin-bottom: 4px;
+      }
+
+      .section.top h1 .create {
+        font-weight: bold;
+        font-style: italic;
+        font-family: 'Press Start 2P', sans-serif;
+        font-size: 3rem;
+        display: inline-block;
+        vertical-align: middle;
+        margin-bottom: 4px;
+      }
+
+      .entice-wrapper {
+        display: flex;
+        padding: 0;
+        margin: 0 0 16px;
+      }
+
+      .psu-entice {
+        color: white;
+        background-color: #00000088;
+        padding: 8px;
+        font-size: 20px;
+      }
+
       .square {
         color: white;
         width: 300px;
@@ -103,7 +153,16 @@ export class HaxPsu extends LitElement {
       }
 
       .square-3 {
-          background-color: var(--hax-psu-square-3);  
+        background-color: var(--hax-psu-square-3);  
+      }
+
+      future-terminal-text {
+        overflow-wrap: break-all;
+        text-elipsis: ellipsis;
+        line-height: 36px;
+        font-size: 18px;
+        text-align: left;
+        --future-terminal-text-color: white;
       }
     `;
   }
@@ -129,20 +188,54 @@ export class HaxPsu extends LitElement {
     ).then((data) => {
       this.stats = data.data.overall;
     });
+    setTimeout(() => {
+      this.shadowRoot.querySelector('.hax')._doGlitch();
+    }, 1000);
+    setTimeout(() => {
+      this.shadowRoot.querySelector('.hax')._doGlitch();
+    }, 5000);
+    setTimeout(() => {
+      this.shadowRoot.querySelector('.hax')._doGlitch();
+    }, 10000);
+    setTimeout(() => {
+      this.shadowRoot.querySelector('.create').innerHTML = "online courses";
+      this.shadowRoot.querySelector('.create')._doGlitch();
+    }, 4000);
+    setTimeout(() => {
+      this.shadowRoot.querySelector('.create').innerHTML = "portfolios";
+      this.shadowRoot.querySelector('.create')._doGlitch();
+    }, 8000);
+
+    setTimeout(() => {
+      this.shadowRoot.querySelector('.create').innerHTML = "ANYTHING";
+      this.shadowRoot.querySelector('.create')._doGlitch();
+    }, 12000);
   }
 
   render() {
     return html`
       <header>
-        <a href="https://psu.edu/"><img src="https://sites.psu.edu/files/2023/03/Penn-State-Mark.png" alt="Penn State Logo" class="logo" /></a>
+        <div class="logo-wrapper">
+          <a href="https://psu.edu/">
+            <img src="https://sites.psu.edu/files/2023/03/Penn-State-Mark.png" alt="Penn State Logo" class="logo" />
+          </a>
+        </div>
       </header>
       <main>
-        <img src="${this.image}" alt="HAX the web mascot" />
-        <h1>${this.title}</h1>
+        <page-section class="section top" filter background-color="blue" accent-color="blue" fold scroller image="${this.image}">
+          <h1><span class="text">Create <future-terminal-text white
+              glitch class="create">websites</future-terminal-text></span><div>
+                <span class="text">easily with </span><future-terminal-text
+              glitch class="hax">HAX</future-terminal-text></div></h1>
+          <p class="entice-wrapper"><span class="psu-entice">Part of <strong>Penn State</strong>?</span></p>
+          <simple-cta slot="buttons" link="https://haxtheweb.org/" accent-color="blue" dark>Log in</simple-cta>
+        </page-section>
+        <page-section fold scroller>
         <h2>${this.subTitle}</h2>
         <p>Build your own website fast, free, forever, with HAX</p>
         <h3>Part of Penn State?</h3>
         <a class="tease-link" href="https://hax.psu.edu/login.php"><button>Start building with HAX</button></a>
+        </page-section>
 
         <h2>HAX: By the numbers</h2>
         <div class="container">

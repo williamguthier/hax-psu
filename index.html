@@ -37,26 +37,32 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
   <meta name="theme-color" content="#1e407c">
-
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Press+Start+2P&display=swap" rel="stylesheet" />
   <style>
     html,
     body {
       margin: 0;
       padding: 0;
-      font-family: sans-serif;
+      font-family: "Open Sans", sans-serif;
       --primary-color-1: #001e44;
       --primary-color-2: #1e407c;
       --primary-color-3: #ffffff;
       --seconary-color-1: #96bee6;
       --bg-color-1: #ffffff;
       --bg-color-2: #eef3f7;
-      background-color: var(--primary-color-3);
+      background-color: var(--primary-color-1);
+    }
+    .headline {
+      font-size: 2rem;
+      background-color: black;
+      color: orange;
     }
   </style>
 </head>
 
-<body>
-  <hax-psu title="Stuff" image="https://btopro.com/assets/banner.jpg"></hax-psu>
+<body vocab="http://schema.org/" prefix="oer:http://oerschema.org cc:http://creativecommons.org/ns dc:http://purl.org/dc/terms/">
+  <hax-psu image="https://bpb-us-e1.wpmucdn.com/sites.psu.edu/dist/9/29664/files/2017/04/shutterstock_1251836-26rsp75.jpg">
+  </hax-psu>
   <script type="module" src="./src/hax-psu.js"></script>
 </body>
 
