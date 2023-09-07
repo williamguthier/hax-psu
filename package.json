@@ -17,6 +17,9 @@
     "@lrnwebcomponents/simple-cta": "^7.0.16",
     "@lrnwebcomponents/page-section": "^7.0.16",
     "@lrnwebcomponents/future-terminal-text": "^7.0.16",
+    "@lrnwebcomponents/utils": "^7.0.16",
+    "@lrnwebcomponents/simple-colors": "^7.0.16",
+    "@lrnwebcomponents/simple-icon": "^7.0.16",
     "lit": "^2.8.0"
   },
   "devDependencies": {
