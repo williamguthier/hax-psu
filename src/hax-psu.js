@@ -50,6 +50,13 @@ export class HaxPsu extends LitElement {
 
       h1, h2, h3, h4, h5, h6 {
         font-family: "Open Sans",Helvetica,Arial,Lucida,sans-serif;
+        font-weight: bold;
+        font-style: normal;
+        text-transform: none;
+        text-decoration: none;
+        letter-spacing: 1px;
+        padding-bottom: 8px;
+        line-height: 1em;
       }
 
       .logo-wrapper {
@@ -107,6 +114,9 @@ export class HaxPsu extends LitElement {
       .section.top {
         text-align: left;
       }
+      .section:not(.top) {
+        padding: 24px 0;
+      }
 
       .section.top h1 .hax {
         font-weight: bold;
@@ -141,6 +151,19 @@ export class HaxPsu extends LitElement {
         font-size: 20px;
       }
 
+      .section-style-1 {
+        width: 80%;
+        margin: 0 auto;
+        max-width: 1080px;
+        padding: 32px 0;
+        text-align: left;
+      }
+
+      p {
+        line-height: 42px;
+        font-size: 22px;
+      }
+
       .square {
         color: white;
         width: 300px;
@@ -158,7 +181,6 @@ export class HaxPsu extends LitElement {
 
       future-terminal-text {
         overflow-wrap: break-all;
-        text-elipsis: ellipsis;
         line-height: 36px;
         font-size: 18px;
         text-align: left;
@@ -170,7 +192,7 @@ export class HaxPsu extends LitElement {
   constructor() {
     super();
     this.title = 'HAX @ PSU';
-    this.subTitle = 'Content Management System';
+    this.subTitle = 'What is HAX?';
     this.stats = {};
     this.image = '';
     let base = '';
@@ -230,11 +252,15 @@ export class HaxPsu extends LitElement {
           <p class="entice-wrapper"><span class="psu-entice">Part of <strong>Penn State</strong>?</span></p>
           <simple-cta slot="buttons" link="https://haxtheweb.org/" accent-color="blue" dark>Log in</simple-cta>
         </page-section>
-        <page-section fold scroller>
-        <h2>${this.subTitle}</h2>
-        <p>Build your own website fast, free, forever, with HAX</p>
-        <h3>Part of Penn State?</h3>
-        <a class="tease-link" href="https://hax.psu.edu/login.php"><button>Start building with HAX</button></a>
+        <page-section fold scroller class="section">
+        <div class="section-style-1">
+          <h2>${this.subTitle}</h2>
+          <p><strong>A radically simple approach to <em>web authoring</em> and <em>content ownership</em>.</strong></p>
+          <p>HAX is built on the premise
+            that any and everyone should be able to create rich, engaging content without the need for complex platforms, installations or vendor lock-in.
+            The HAX block system allows for sustainable content creation that is easy to click and build for novices while outputting clean, semantic HTML for experts.
+          </p>
+        </div>
         </page-section>
 
         <h2>HAX: By the numbers</h2>
