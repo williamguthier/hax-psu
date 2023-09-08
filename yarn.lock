@@ -1170,6 +1170,15 @@
   dependencies:
     lit "^2.7.6"
 
+"@lrnwebcomponents/simple-icon@^7.0.16":
+  version "7.0.16"
+  resolved "https://registry.yarnpkg.com/@lrnwebcomponents/simple-icon/-/simple-icon-7.0.16.tgz#4ec68c46abe4fc286a80aba8be072ac4aa0e8e3b"
+  integrity sha512-ZAX4wsb8CKRnsGWM9z5E/dSulcGdJbsDWatOw+DuswtnEtelfl/OkB+lKLONCvtqHb8obwm/H9Mvma95//QcWQ==
+  dependencies:
+    "@lrnwebcomponents/simple-colors" "^7.0.16"
+    flag-icons "6.6.4"
+    lit "^2.7.6"
+
 "@lrnwebcomponents/utils@^7.0.16":
   version "7.0.16"
   resolved "https://registry.yarnpkg.com/@lrnwebcomponents/utils/-/utils-7.0.16.tgz#a2152d576be247597d56bd7deb494a503cda8cc7"
@@ -2360,6 +2369,11 @@ find-replace@^3.0.0:
   integrity sha512-6Tb2myMioCAgv5kfvP5/PkZZ/ntTpVK39fHY7WkWBgvbeE+VHd/tZuZ4mrC+bxh4cfOZeYKVPaJIZtZXV7GNCQ==
   dependencies:
     array-back "^3.0.1"
+
+flag-icons@6.6.4:
+  version "6.6.4"
+  resolved "https://registry.yarnpkg.com/flag-icons/-/flag-icons-6.6.4.tgz#e1ee37b2dd946fb576bbf7586814ed3eedcee7ae"
+  integrity sha512-hRRXKw3f5F2OCcDTOTXO0tc3ODqBx/ttA61V9mqy/hVbnFXzW+7tJMLQ+xd77+BXwdUzQAMLW2G4RZqqvaN3Mg==
 
 for-each@^0.3.3:
   version "0.3.3"
