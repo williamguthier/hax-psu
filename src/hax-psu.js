@@ -1,10 +1,11 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html, render, css } from 'lit';
 import "@lrnwebcomponents/play-list/play-list.js";
 import "@lrnwebcomponents/grid-plate/grid-plate.js";
 import "@lrnwebcomponents/count-up/count-up.js";
 import "@lrnwebcomponents/simple-cta/simple-cta.js";
 import "@lrnwebcomponents/page-section/page-section.js";
 import "@lrnwebcomponents/future-terminal-text/future-terminal-text.js";
+import "@lrnwebcomponents/simple-img/simple-img.js";
 
 export class HaxPsu extends LitElement {
   static get properties() {
@@ -13,15 +14,16 @@ export class HaxPsu extends LitElement {
       stats: { type: Object },
       image: { type: String },
       year: { type: Number },
+      examples: { type: Array },
     };
   }
 
   static get styles() {
     return css`
       :host {
-        --hax-psu-square-1: #1a2b42;
-        --hax-psu-square-2: #2c3e50;    
-        --hax-psu-square-3: #4776b7;
+        --hax-psu-square-1: var(--primary-color-1);
+        --hax-psu-square-2: var(--primary-color-2);
+        --hax-psu-square-3: var(--primary-color-3);
         min-height: 100vh;
         display: flex;
         flex-direction: column;
@@ -118,26 +120,28 @@ export class HaxPsu extends LitElement {
         background-color: black;
         color: #ff8c00;
       }
-
       .container {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: space-evenly;
         align-items: center;
-        margin: 0 auto;
+        width: 100%;
+        margin: 0px auto;
       }
       .section {
         background-color: var(--bg-color-1);
       }
-
       grid-plate {
         margin: 0 0 128px;
       }
-      grid-plate p,
       grid-plate div {
-        margin: 0 16px;
+        margin: 0 32px;
       }
-
+      play-list {
+        --sl-color-neutral-300: var(--primary-color-2);
+        --sl-color-neutral-700: var(--secondary-color-2);
+        --play-list-icon-color: var(--primary-color-1);
+      }
       #section-2 {
         background-color: var(--bg-color-1);
       }
@@ -263,7 +267,6 @@ export class HaxPsu extends LitElement {
 
       .square {
         color: white;
-        height: 200px;
         background-color: var(--hax-psu-square-1);
       }
 
@@ -272,7 +275,8 @@ export class HaxPsu extends LitElement {
       }
 
       .square-3 {
-        background-color: var(--hax-psu-square-3);  
+        background-color: var(--hax-psu-square-3);
+        color: black;
       }
 
       future-terminal-text {
@@ -286,11 +290,18 @@ export class HaxPsu extends LitElement {
       count-up {
         text-align: center;
         width: 200px;
+        min-height: 200px;
         font-size: 20px;
         color: white;
+        padding: 16px;
         --count-up-number-font-weight: 500;
-        --count-up-number-font-size: 72px;
+        --count-up-number-font-size: 64px;
         --count-up-color: white;
+      }
+
+      .square-3 count-up {
+        color: black;
+        --count-up-color: black;        
       }
 
       footer {
@@ -351,9 +362,103 @@ export class HaxPsu extends LitElement {
     `;
   }
 
+  firstUpdated(changedProperties) {
+    super.firstUpdated(changedProperties);
+    setTimeout(() => {
+      this.renderExamplesTemplate();
+    }, 0);
+    setTimeout(() => {
+      if (window.location.hash) {
+        const nextTarget = this.shadowRoot.querySelector(`${window.location.hash}`);
+        console.log(nextTarget);
+        if (nextTarget && nextTarget.scrollIntoView) {
+          nextTarget.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    }, 1000);
+  }
+
+    // because of how processed <template> tags work in lit (illegal) we have to specialized way of rendering
+  // so that the play-list element is empty for a second and then we template stamp it into placee
+  renderExamplesTemplate() {
+    let template = document.createElement("template");
+    render(
+      html`${this.examples.map(
+        (item) =>
+          html`
+            <div style="display:flex;">
+              <simple-img fetchpriority="low" decoding="async" src="https://screenshoturl.elmsln.vercel.app/api/screenshotUrl?quality=10&render=img&urlToCapture=${item.image}">
+              </simple-img>
+              <div style="margin: 0 0 0 16px;">
+                <h3><a href="${item.url}" target="_blank" rel="noopener">${item.title}</a></h3>
+                <div><strong>${item.type}</strong></div>
+                <p>${item.description}</p>
+              </div>
+            </div>`
+      )}`,
+      template
+    );
+    this.shadowRoot
+      .querySelector("#examplestemplate")
+      .appendChild(template);
+  }
+
   constructor() {
-    super();
+    super();    
     this.title = 'HAX @ PSU';
+    this.examples = [
+      {
+        title: 'AA 100',
+        type: "course website",
+        description: 'Introduction to International Arts',
+        url: 'https://courses.hax.psu.edu/bto108/sites/aa100-su23/',
+        image: 'https://oer.hax.psu.edu/bto108/sites/aa100-su23/module-four-identity-case-studies-in-france-italy-and-india/france/new-item'
+      },
+      {
+        title: 'PHYS 211',
+        type: "course website",
+        description: 'Mechanics',
+        url: 'https://oer.hax.psu.edu/lul29/sites/phys211/',
+        image: 'https://oer.hax.psu.edu/lul29/sites/phys211/week-3a-kinematics-of-projectile-motion-and-uniform-circular-motion/uniform-circular-motion'
+      },
+      {
+        title: 'HAXCelence',
+        type: "website",
+        description: 'Our community site for advancing excellence in online teaching via HAX',
+        url: 'https://oer.hax.psu.edu/bto108/sites/haxcellence/',
+        image: 'https://oer.hax.psu.edu/bto108/sites/haxcellence/ontology'
+      },
+      {
+        title: 'PHYS 212',
+        type: "course website",
+        description: 'Electricity and Magnetism',
+        url: 'https://oer.hax.psu.edu/arz48/sites/phys212/',
+        image: 'https://oer.hax.psu.edu/arz48/sites/phys212/'
+      },
+      {
+        title: 'IST 256',
+        type: "course website",
+        description: 'Programming for the web',
+        url: 'https://oer.hax.psu.edu/bto108/sites/ist256/',
+        image: 'https://oer.hax.psu.edu/bto108/sites/ist256/'
+      },
+      {
+        title: 'The Sea Voyage',
+        type: "self-hosted resource",
+        description: 'Digital Beaumont & Fletcher',
+        url: 'https://tsv-dbfp.libraries.psu.edu',
+        image: 'https://tsv-dbfp.libraries.psu.edu/content/basetext/basetext-act-02/'
+      },
+      {
+        title: 'Eberly ODL',
+        type: "self-hosted website",
+        description: 'Custom site for Eberly Office of Digital Learning',
+        url: 'https://odl.science.psu.edu/',
+        image: 'https://odl.science.psu.edu/',
+      },
+
+      
+    ];
     this.stats = {};
     this.year = new Date().getFullYear();
     this.image = '';
@@ -396,6 +501,15 @@ export class HaxPsu extends LitElement {
     }, 12000);
   }
 
+  scrollToTarget(e) {
+    if (e.target.dataset && e.target.dataset.target) {
+      const nextTarget = this.shadowRoot.querySelector(`#${e.target.dataset.target}`);
+      if (nextTarget && nextTarget.scrollIntoView) {
+        nextTarget.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  }
+
   render() {
     return html`
     <header>
@@ -406,12 +520,12 @@ export class HaxPsu extends LitElement {
       </div>
       <div class="menu">
         <a href="https://hax.psu.edu/login.php" tabindex="-1" class="menu-item menu-login"><button>Login</button></a>
-        <a href="#section-2" tabindex="-1" class="menu-item"><button>Community</button></a>
-        <a href="#section-3" tabindex="-1" class="menu-item"><button>Features</button></a>
-        <a href="#section-4" tabindex="-1" class="menu-item"><button>Testimonials</button></a>
-        <a href="#section-5" tabindex="-1" class="menu-item"><button>Examples</button></a>
-        <a href="#section-6" tabindex="-1" class="menu-item"><button>About</button></a>
-        <a href="#section-7" tabindex="-1" class="menu-item"><button>FAQ</button></a>
+        <a href="#section-2" tabindex="-1" class="menu-item" @click="${this.scrollToTarget}"><button data-target="section-2">Community</button></a>
+        <a href="#section-3" tabindex="-1" class="menu-item" @click="${this.scrollToTarget}"><button data-target="section-3">Features</button></a>
+        <a href="#section-4" tabindex="-1" class="menu-item" @click="${this.scrollToTarget}"><button data-target="section-4">Testimonials</button></a>
+        <a href="#section-5" tabindex="-1" class="menu-item" @click="${this.scrollToTarget}"><button data-target="section-5">Examples</button></a>
+        <a href="#section-6" tabindex="-1" class="menu-item" @click="${this.scrollToTarget}"><button data-target="section-6">About</button></a>
+        <a href="#section-7" tabindex="-1" class="menu-item" @click="${this.scrollToTarget}"><button data-target="section-7">FAQ</button></a>
       </div>
     </header>
     <main>
@@ -469,12 +583,7 @@ export class HaxPsu extends LitElement {
       </page-section>
       <page-section id="section-5" class="section">
         <h2>HAX in action</h2>
-        <play-list>
-            <img src="https://placehold.it/350x150"/>
-            <img src="https://placehold.it/350x150"/>
-            <img src="https://placehold.it/350x150"/>
-            <img src="https://placehold.it/350x150"/>
-        </play-list>
+        <play-list id="examplestemplate" loop></play-list>
       </page-section>
       <page-section id="section-6" class="section">
         <grid-plate layout="1-1" disable-responsive>
@@ -506,16 +615,16 @@ export class HaxPsu extends LitElement {
           </a>
         </div>
         <div class="footer-left">
-          <ul class="with-border tight">
+          <ul>
             <li><a href="https://www.psu.edu/web-privacy-statement" role="link">Privacy Statement</a></li>
             <li><a href="https://policy.psu.edu/policies/ad85" role="link">Non Discrimination</a></li>
             <li><a href="https://www.psu.edu/accessibilitystatement" role="link">Accessibility</a></li>
             <li><a href="https://policy.psu.edu/policies/hr11" role="link">Equal Opportunity</a></li>
             <li><a href="https://www.psu.edu/legal-statements" role="link">Legal Statements</a></li>
           </ul>
-          <ul class="tight">
+          <ul>
             <li><a href="https://www.psu.edu/copyright-information/index.html" role="link">The Pennsylvania State University © <span id="YEAR">${this.year}</span></a></li>
-            <li><a href="https://sites.psu.edu/wp-admin/" role="link">Login</a></li>
+            <li><a href="https://hax.psu.edu/login.php" role="link">Login</a></li>
             <li class="footer-svg"><img decoding="async" src="https://www.psu.edu/psu-edu-assets/images/shared/we-are-penn-state.svg" alt="We Are Penn State"></li>
           </ul>
         </div>
