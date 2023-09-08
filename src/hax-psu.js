@@ -68,11 +68,13 @@ export class HaxPsu extends LitElement {
         font-weight: 600;
         text-decoration: underline;
       }
-      a:focus,
-      a:hover {
-        text-decoration: none;
+      a:focus {
         outline: 2px solid var(--link-color-1);
         outline-offset: 2px;
+      }
+
+      a:hover {
+        text-decoration: none;
       }
 
       .logo-wrapper a {
@@ -81,6 +83,8 @@ export class HaxPsu extends LitElement {
 
       main {
         flex-grow: 1;
+        width: 100%;
+        display: block;
       }
 
       main h1,
@@ -123,18 +127,42 @@ export class HaxPsu extends LitElement {
         margin: 0 auto;
       }
       .section {
-        background-color: var(--bg-color-2);
+        background-color: var(--bg-color-1);
+      }
+
+      grid-plate {
+        margin: 0 0 128px;
+      }
+      grid-plate p,
+      grid-plate div {
+        margin: 0 16px;
       }
 
       #section-2 {
         background-color: var(--bg-color-1);
+      }
+
+      #section-3 {
+        background-color: var(--bg-color-2);
+      }
+
+      #section-4 {
+        color: var(--bg-color-1);
+      }
+
+      #section-5 {
+        background-color: var(--bg-color-1);
+      }
+
+      #section-6 {
+        background-color: var(--bg-color-2);
       }
       
       .section.top {
         text-align: left;
       }
       .section:not(.top) {
-        padding: 72px 0;
+        --page-section-padding: 32px 0;
       }
 
       .section.top h1 .hax {
@@ -262,12 +290,63 @@ export class HaxPsu extends LitElement {
         color: white;
         --count-up-number-font-weight: 500;
         --count-up-number-font-size: 72px;
+        --count-up-color: white;
       }
 
       footer {
         background-image: linear-gradient(180deg,#002e69 0%,#001e44 60%)!important;
-        padding: 0;
+        font-family: "Roboto Condensed",Impact,"Franklin Gothic Bold",sans-serif;
+        font-size: .95rem;
+        overflow: hidden;
+        line-height: 26px;
+        width: 100%;
+        border-bottom: solid 8px var(--secondary-color-2);
+      }
+      .footer-inner {
+        width: 80%;
+        max-width: 1080px;
+        margin: auto;
+        position: relative;
+        padding: 1em;
+      }
+      .footer-logo {
+        float: left;
+        max-width: 160px;
+        margin-right: 2em;
+        padding-top: 20px;
+      }
+      footer a {
+        color: var(--link-color-2);
+        font-weight: normal;
+        text-decoration: none;
+        font-size: 0.95rem;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
+      footer ul {
+        list-style: none;
+        padding: 0.5rem 0;
         margin: 0;
+      }
+      footer ul li {
+        display: inline-block;
+        border-right: 1px solid #314d64;
+        padding: 0 8px;
+        margin-left: 0;
+      }
+      footer img {
+        margin: 0 auto 0;
+        width: 168px;
+        max-width: 100%;
+        height: auto;
+      }
+      footer ul li:first-child {
+        padding-left: 0;
+      }
+      footer ul li:last-child {
+        border-right: none;
+        padding-right: 0;
       }
     `;
   }
@@ -303,11 +382,11 @@ export class HaxPsu extends LitElement {
       this.shadowRoot.querySelector('.hax')._doGlitch();
     }, 10000);
     setTimeout(() => {
-      this.shadowRoot.querySelector('.create').innerHTML = "online courses";
+      this.shadowRoot.querySelector('.create').innerHTML = "COURSES";
       this.shadowRoot.querySelector('.create')._doGlitch();
     }, 4000);
     setTimeout(() => {
-      this.shadowRoot.querySelector('.create').innerHTML = "portfolios";
+      this.shadowRoot.querySelector('.create').innerHTML = "PORTFOLIOS";
       this.shadowRoot.querySelector('.create')._doGlitch();
     }, 8000);
 
@@ -319,32 +398,32 @@ export class HaxPsu extends LitElement {
 
   render() {
     return html`
-      <header>
-        <div class="logo-wrapper">
-          <a href="https://psu.edu/">
-            <img src="https://sites.psu.edu/files/2023/03/Penn-State-Mark.png" alt="Penn State Logo" class="logo" />
-          </a>
-        </div>
-        <div class="menu">
-          <a href="https://hax.psu.edu/login.php" tabindex="-1" class="menu-item menu-login"><button>Login</button></a>
-          <a href="#section-2" tabindex="-1" class="menu-item"><button>Community</button></a>
-          <a href="#section-3" tabindex="-1" class="menu-item"><button>Features</button></a>
-          <a href="#section-4" tabindex="-1" class="menu-item"><button>Testimonials</button></a>
-          <a href="#section-5" tabindex="-1" class="menu-item"><button>Examples</button></a>
-          <a href="#section-6" tabindex="-1" class="menu-item"><button>About</button></a>
-          <a href="#section-7" tabindex="-1" class="menu-item"><button>FAQ</button></a>
-        </div>
-      </header>
-      <main>
-        <page-section id="section-1" full class="section top" filter accent-color="blue" fold scroller image="${this.image}">
-          <h1><span class="text">Create <future-terminal-text white
-              glitch class="create">websites</future-terminal-text></span><div>
-                <span class="text">easily with </span><future-terminal-text
-              glitch class="hax">HAX</future-terminal-text></div></h1>
-          <p class="entice-wrapper"><span class="psu-entice">Part of <strong>Penn State</strong>?</span></p>
-          <simple-cta slot="buttons" link="https://hax.psu.edu/login.php" accent-color="blue" dark>Log in</simple-cta>
-        </page-section>
-        <page-section id="section-2" class="section" scroller>
+    <header>
+      <div class="logo-wrapper">
+        <a href="https://www.psu.edu" title="Penn State" role="link">
+          <img decoding="async" src="https://sites.psu.edu/files/2023/03/Penn-State-Mark.png" alt="Nittany Lion Shield Penn State Mark" class="logo" />
+        </a>
+      </div>
+      <div class="menu">
+        <a href="https://hax.psu.edu/login.php" tabindex="-1" class="menu-item menu-login"><button>Login</button></a>
+        <a href="#section-2" tabindex="-1" class="menu-item"><button>Community</button></a>
+        <a href="#section-3" tabindex="-1" class="menu-item"><button>Features</button></a>
+        <a href="#section-4" tabindex="-1" class="menu-item"><button>Testimonials</button></a>
+        <a href="#section-5" tabindex="-1" class="menu-item"><button>Examples</button></a>
+        <a href="#section-6" tabindex="-1" class="menu-item"><button>About</button></a>
+        <a href="#section-7" tabindex="-1" class="menu-item"><button>FAQ</button></a>
+      </div>
+    </header>
+    <main>
+      <page-section id="section-1" full class="section top" filter accent-color="blue" fold scroller scroller-label="Let's learn about HAX" image="${this.image}">
+        <h1><span class="text">Create <future-terminal-text white
+            glitch class="create">WEBSITES</future-terminal-text></span><div>
+              <span class="text">easily with </span><future-terminal-text
+            glitch class="hax">HAX</future-terminal-text></div></h1>
+        <p class="entice-wrapper"><span class="psu-entice">Part of <strong>Penn State</strong>?</span></p>
+        <simple-cta slot="buttons" link="https://hax.psu.edu/login.php" accent-color="blue" dark>Log in</simple-cta>
+      </page-section>
+      <page-section id="section-2" class="section" scroller scroller-label="By the numbers">
         <div class="section-style-1">
           <h2>What is HAX?</h2>
           <p><strong>A radically simple approach to <em>web authoring</em> and <em>content ownership</em>.</strong></p>
@@ -353,27 +432,30 @@ export class HaxPsu extends LitElement {
             The HAX block system allows for sustainable content creation that is easy to click and build for novices while outputting clean, semantic HTML for experts.
           </p>
         </div>
-        </page-section>
-        <page-section id="section-3" class="section" accent-color="orange">
-          <h2>HAX: By the numbers</h2>
-          <div class="container">
-            <div class="square">
+      </page-section>
+      <page-section id="section-3" class="section" accent-color="orange">
+        <h2>HAX: By the numbers</h2>
+        <div class="container">
+          <div class="square">
             <count-up end="${this.stats.site_count}" suffixtext=" sites">
               <div slot="suffix">Built with HAX</div>
             </count-up>
-            </div>
-            <div class="square square-2">
-            <count-up end="${this.stats.user_count}"></count-up>
-                <p>Building with HAX</p>
-            </div>
-            <div class="square square-3">
-            <count-up end="${this.stats.total_pages}"></count-up>
-                <p>of unique content</p>
-            </div>
           </div>
-        </page-section>
+          <div class="square square-2">
+            <count-up end="${this.stats.user_count}" suffixtext=" users">
+              <div slot="suffix">Creating with HAX</div>
+            </count-up>
+          </div>
+          <div class="square square-3">
+            <count-up end="${this.stats.total_pages}" suffixtext=" pages">
+              <div slot="suffix">of unique content</div>
+            </count-up>
+          </div>
+        </div>
+      </page-section>
+      <page-section id="section-4" accent-color="blue" bg="var(--primary-color-2)" filter fold class="section">
         <h2>Who is HAX for?</h2>
-        <grid-plate layout="1-1-1">
+        <grid-plate layout="1-1-1" disable-responsive>
           <p slot="col-1">
             <strong>Faculty</strong> - Build a course website, a research website, or a personal website
           </p>
@@ -384,54 +466,59 @@ export class HaxPsu extends LitElement {
             <strong>Staff</strong> - Build a department website, a project website, or a personal website
           </p>
         </grid-plate>
+      </page-section>
+      <page-section id="section-5" class="section">
         <h2>HAX in action</h2>
         <play-list>
-          <template>
-            <div>Cool content</div>
-            <div>more example content</div>
-          </template>
+            <img src="https://placehold.it/350x150"/>
+            <img src="https://placehold.it/350x150"/>
+            <img src="https://placehold.it/350x150"/>
+            <img src="https://placehold.it/350x150"/>
         </play-list>
-        <page-section id="section-7" class="section">
-          <grid-plate layout="1-1">
-            <div slot="col-1">
-              <h3>About</h3>
-              <p>
-                HAX is a service provided through a collaboration between Penn State College of Arts and Architecture,
-                Eberly College of Science, College of Information Sciences and Technology, and University libraries. The platform is powered
-                by HAXcms, originally developed to power 100s of high scale online courses. Interested in collaborating? Contact <a href="mailto:bmr1@psu.edu">Bill Rose, Product Owner</a>.
-              </p>
-            </div>
-            <div slot="col-2">
-              <h3>Privacy policy</h3>
-              <p>
-              Penn State IT does not monitor websites and does not assume responsibility for any published content.
-              The content authors are responsible for the content of their websites.
-              Use of this service is governed by <a href="https://security.psu.edu/awareness/psu-policies/" target="_blank" rel="nofollow noopener">Penn State policies and guidelines</a>, including 
-              <a href="https://policy.psu.edu/policies/ad54" target="_blank" rel="nofollow noopener">Penn State IT Web Services Policy</a>.
-              </p>
-            </div>
-          </grid-plate>
-        </page-section>
+      </page-section>
+      <page-section id="section-6" class="section">
+        <grid-plate layout="1-1" disable-responsive>
+          <div slot="col-1">
+            <h3>About</h3>
+            <p>
+              HAX is a service provided through a collaboration between Penn State College of Arts and Architecture,
+              Eberly College of Science, College of Information Sciences and Technology, and University libraries. The platform is powered
+              by HAXcms, originally developed to power 100s of high scale online courses. Interested in collaborating? Contact <a href="mailto:bmr1@psu.edu">Bill Rose, Product Owner</a>.
+            </p>
+          </div>
+          <div slot="col-2">
+            <h3>Privacy policy</h3>
+            <p>
+            Penn State IT does not monitor websites and does not assume responsibility for any published content.
+            The content authors are responsible for the content of their websites.
+            Use of this service is governed by <a href="https://security.psu.edu/awareness/psu-policies/" target="_blank" rel="nofollow noopener">Penn State policies and guidelines</a>, including 
+            <a href="https://policy.psu.edu/policies/ad54" target="_blank" rel="nofollow noopener">Penn State IT Web Services Policy</a>.
+            </p>
+          </div>
+        </grid-plate>
+      </page-section>
     </main>
     <footer>
-      <div class="footer-logo">
-        <a href="https://www.psu.edu" title="Penn State" role="link">
-        <img decoding="async" alt="Nittany Lion Shield Penn State Mark" src="/files/2015/05/psu-mark-footer.png">
-        </a>
-      </div>
-      <div class="footer-left">
-        <ul class="with-border tight">
-          <li><a href="https://www.psu.edu/web-privacy-statement" role="link">Privacy Statement</a></li>
-          <li><a href="https://policy.psu.edu/policies/ad85" role="link">Non Discrimination</a></li>
-          <li><a href="https://www.psu.edu/accessibilitystatement" role="link">Accessibility</a></li>
-          <li><a href="https://policy.psu.edu/policies/hr11" role="link">Equal Opportunity</a></li>
-          <li><a href="https://www.psu.edu/legal-statements" role="link">Legal Statements</a></li>
-        </ul>
-        <ul class="tight">
-          <li><a href="https://www.psu.edu/copyright-information/index.html" role="link">The Pennsylvania State University © <span id="YEAR">${this.year}</span></a></li>
-          <li><a href="https://sites.psu.edu/wp-admin/" role="link">Login</a></li>
-          <li class="footer-svg"><img decoding="async" src="https://www.psu.edu/psu-edu-assets/images/shared/we-are-penn-state.svg" alt="We Are Penn State"></li>
-        </ul>
+      <div class="footer-inner">
+        <div class="footer-logo">
+          <a href="https://www.psu.edu" title="Penn State" role="link">
+            <img decoding="async" src="https://sites.psu.edu/files/2023/03/Penn-State-Mark.png" alt="Nittany Lion Shield Penn State Mark" class="logo" />
+          </a>
+        </div>
+        <div class="footer-left">
+          <ul class="with-border tight">
+            <li><a href="https://www.psu.edu/web-privacy-statement" role="link">Privacy Statement</a></li>
+            <li><a href="https://policy.psu.edu/policies/ad85" role="link">Non Discrimination</a></li>
+            <li><a href="https://www.psu.edu/accessibilitystatement" role="link">Accessibility</a></li>
+            <li><a href="https://policy.psu.edu/policies/hr11" role="link">Equal Opportunity</a></li>
+            <li><a href="https://www.psu.edu/legal-statements" role="link">Legal Statements</a></li>
+          </ul>
+          <ul class="tight">
+            <li><a href="https://www.psu.edu/copyright-information/index.html" role="link">The Pennsylvania State University © <span id="YEAR">${this.year}</span></a></li>
+            <li><a href="https://sites.psu.edu/wp-admin/" role="link">Login</a></li>
+            <li class="footer-svg"><img decoding="async" src="https://www.psu.edu/psu-edu-assets/images/shared/we-are-penn-state.svg" alt="We Are Penn State"></li>
+          </ul>
+        </div>
       </div>
     </footer> 
     `;
