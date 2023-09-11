@@ -37,6 +37,7 @@ export class HaxPsu extends LitElement {
       }
 
       .logo {
+        transition: all 0.3s ease-in-out;
         width: 200px;
         top: 0;
         left: 0;
@@ -152,6 +153,9 @@ export class HaxPsu extends LitElement {
 
       #section-4 {
         color: var(--bg-color-1);
+        --page-section-content-padding: 0 2%;
+        --page-section-content-width: 90%;
+        --page-section-content-max-width: 90%;
       }
 
       #section-5 {
@@ -268,6 +272,8 @@ export class HaxPsu extends LitElement {
       .square {
         color: white;
         background-color: var(--hax-psu-square-1);
+        margin: 0 8px;
+        border: 6px solid black;
       }
 
       .square-2 {
@@ -358,6 +364,78 @@ export class HaxPsu extends LitElement {
       footer ul li:last-child {
         border-right: none;
         padding-right: 0;
+      }
+
+      @media (max-width: 1400px) {
+        .menu {
+          margin-right: 0px;
+          margin-top: 4px;
+        }
+        .menu .menu-item button {
+          margin: 0px 4px;
+        }
+      }
+
+      @media (max-width: 1200px) {
+        .logo {
+          width: 150px;
+        }
+        .menu .menu-item button {
+          font-size: 16px;
+        }  
+      }
+
+      @media (max-width: 1000px) {
+        .logo {
+          width: 100px;
+        }
+        .menu .menu-item button {
+          padding: 4px 8px;
+        }  
+      }
+
+      @media (max-width: 768px) {
+
+        .menu .menu-item button {
+          margin: 0px 4px;
+          padding: 4px 8px;
+          font-size: 12px;
+          height: 48px;
+        }        
+
+        #section-2,
+        #section-3,
+        #section-5,
+        #section-6 {
+          --page-section-content-padding: 0 2%;
+          --page-section-content-width: 90%;
+          --page-section-content-max-width: 90%;
+        }
+        #section-3 .container count-up {
+          width: unset;
+          --count-up-number-font-size: 48px;
+        }
+        .section-style-1 {
+          width: 100%;
+          padding: 16px 0;
+        }
+
+        p {
+          line-height: 24px;
+          font-size: 14px;
+          margin: 0 0 24px 0;
+        }
+        h3,h4,h5,h6 {
+          padding: 0 0 8px 0;
+          line-height: 32px;
+          font-size: 18px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .menu .menu-item.menu-login {
+          display: none;
+        }
       }
     `;
   }
@@ -515,7 +593,7 @@ export class HaxPsu extends LitElement {
     <header>
       <div class="logo-wrapper">
         <a href="https://www.psu.edu" title="Penn State" role="link">
-          <img decoding="async" src="https://sites.psu.edu/files/2023/03/Penn-State-Mark.png" alt="Nittany Lion Shield Penn State Mark" class="logo" />
+          <img decoding="async" src="${makeUrl('images/Penn-State-Mark.png')}" alt="Nittany Lion Shield Penn State Mark" class="logo" />
         </a>
       </div>
       <div class="menu">
@@ -529,7 +607,7 @@ export class HaxPsu extends LitElement {
       </div>
     </header>
     <main>
-      <page-section id="section-1" full class="section top" filter accent-color="blue" fold scroller scroller-label="Let's learn about HAX" image="${this.image}">
+      <page-section id="section-1" full class="section top" filter accent-color="blue" fold scroller scroller-label="Let's learn about HAX" image="${makeUrl('images/splash.jpg')}">
         <h1><span class="text">Create <future-terminal-text white
             glitch class="create">WEBSITES</future-terminal-text></span><div>
               <span class="text">easily with </span><future-terminal-text
@@ -548,7 +626,7 @@ export class HaxPsu extends LitElement {
         </div>
       </page-section>
       <page-section id="section-3" class="section" accent-color="orange">
-        <h2>HAX: By the numbers</h2>
+        <h2>By the numbers</h2>
         <div class="container">
           <div class="square">
             <count-up end="${this.stats.site_count}" suffixtext=" sites">
@@ -569,7 +647,7 @@ export class HaxPsu extends LitElement {
       </page-section>
       <page-section id="section-4" accent-color="blue" bg="var(--primary-color-2)" filter fold class="section">
         <h2>Who is HAX for?</h2>
-        <grid-plate layout="1-1-1" disable-responsive>
+        <grid-plate layout="1-1-1">
           <p slot="col-1">
             <strong>Faculty</strong> - Build a course website, a research website, or a personal website
           </p>
@@ -582,11 +660,12 @@ export class HaxPsu extends LitElement {
         </grid-plate>
       </page-section>
       <page-section id="section-5" class="section">
-        <h2>HAX in action</h2>
+        <h2>Examples</h2>
+        <p>Here are some example of real courses and websites using HAX in production.</p>
         <play-list id="examplestemplate" loop></play-list>
       </page-section>
       <page-section id="section-6" class="section">
-        <grid-plate layout="1-1" disable-responsive>
+        <grid-plate layout="1-1">
           <div slot="col-1">
             <h3>About</h3>
             <p>
@@ -611,7 +690,7 @@ export class HaxPsu extends LitElement {
       <div class="footer-inner">
         <div class="footer-logo">
           <a href="https://www.psu.edu" title="Penn State" role="link">
-            <img decoding="async" src="https://sites.psu.edu/files/2023/03/Penn-State-Mark.png" alt="Nittany Lion Shield Penn State Mark" class="logo" />
+            <img decoding="async" src="${makeUrl('images/Penn-State-Mark.png')}" alt="Nittany Lion Shield Penn State Mark" class="logo" />
           </a>
         </div>
         <div class="footer-left">
@@ -625,13 +704,17 @@ export class HaxPsu extends LitElement {
           <ul>
             <li><a href="https://www.psu.edu/copyright-information/index.html" role="link">The Pennsylvania State University © <span id="YEAR">${this.year}</span></a></li>
             <li><a href="https://hax.psu.edu/login.php" role="link">Login</a></li>
-            <li class="footer-svg"><img decoding="async" src="https://www.psu.edu/psu-edu-assets/images/shared/we-are-penn-state.svg" alt="We Are Penn State"></li>
+            <li class="footer-svg"><img decoding="async" src="${makeUrl('images/we-are-penn-state.svg')}" alt="We Are Penn State"></li>
           </ul>
         </div>
       </div>
     </footer> 
     `;
   }
+}
+// make URL for build routine accurate
+function makeUrl(path) {
+  return new URL(`../assets/${path}`, import.meta.url).href;
 }
 
 customElements.define('hax-psu', HaxPsu);
