@@ -1,7 +1,11 @@
-import { LitElement, html, render, css } from 'lit';
+import { LitElement, html, render, css, nothing } from 'lit';
 import "@lrnwebcomponents/simple-cta/simple-cta.js";
 import "@lrnwebcomponents/page-section/page-section.js";
 import "@lrnwebcomponents/future-terminal-text/future-terminal-text.js";
+import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js';
+import '@shoelace-style/shoelace/dist/translations/en.js';
+// Set the base path to the folder you copied Shoelace's assets to
+setBasePath('dist/shoelace');
 
 export class HaxPsu extends LitElement {
   static get properties() {
@@ -457,12 +461,14 @@ export class HaxPsu extends LitElement {
       import("@lrnwebcomponents/play-list/play-list.js");
       import("@lrnwebcomponents/grid-plate/grid-plate.js");
       import("@lrnwebcomponents/count-up/count-up.js");
+      import("@lrnwebcomponents/rpg-character/rpg-character.js");
+      import("@shoelace-style/shoelace/dist/components/carousel/carousel.js");
+      import("@shoelace-style/shoelace/dist/components/carousel-item/carousel-item.js");
       this.renderExamplesTemplate();
     }, 0);
     setTimeout(() => {
       if (window.location.hash) {
         const nextTarget = this.shadowRoot.querySelector(`${window.location.hash}`);
-        console.log(nextTarget);
         if (nextTarget && nextTarget.scrollIntoView) {
           nextTarget.scrollIntoView({ behavior: "smooth", block: "start" });
         }
@@ -564,10 +570,17 @@ export class HaxPsu extends LitElement {
         .replace(/localhost:8(.*)/, "localhost:3000");
     }
     fetch(`${base}/api/stats`).then((res) => {
-      return res.json();
+      if (res.ok) {
+        return res.json();
+      }
+      else {
+        this.stats = null;
+      }
     }
     ).then((data) => {
       this.stats = data.data.overall;
+    }).catch((e) => {
+      this.stats = null;
     });
     setTimeout(() => {
       this.shadowRoot.querySelector('.hax')._doGlitch();
@@ -641,6 +654,7 @@ export class HaxPsu extends LitElement {
         </div>
       </page-section>
       <page-section id="section-3" class="section" accent-color="orange">
+      ${this.stats != null ? html`
         <h2>By the numbers</h2>
         <div class="container">
           <div class="square">
@@ -659,6 +673,7 @@ export class HaxPsu extends LitElement {
             </count-up>
           </div>
         </div>
+        ` : nothing}
       </page-section>
       <page-section id="section-4" accent-color="blue" bg="var(--primary-color-2)" filter fold class="section">
         <h2>Who is HAX for?</h2>

@@ -36,8 +36,18 @@ export default {
           flatten: false
         },
         {
+          src: 'null',
+          dest: `${outputDir}/`,
+          flatten: false
+        },
+        {
+          src: 'assets/',
+          dest: `${outputDir}/assets`,
+          flatten: false
+        },
+        {
           src: 'node_modules/@lrnwebcomponents/rpg-character/lib/',
-          dest: `${outputDir}/node_modules/@lrnwebcomponents/rpg-character`,
+          dest: `${outputDir}/lib`,
           flatten: false
         },
         {
@@ -48,6 +58,11 @@ export default {
         {
           src: 'node_modules/@lrnwebcomponents/hax-iconset/lib/svgs/',
           dest: `${outputDir}/svgs`,
+          flatten: false
+        },
+        {
+          src: path.resolve(__dirname, 'node_modules/@shoelace-style/shoelace/dist/assets'),
+          dest: path.resolve(__dirname, 'dist/shoelace'),
           flatten: false
         },
       ],
