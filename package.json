@@ -11,17 +11,17 @@
     "start": "web-dev-server"
   },
   "dependencies": {
-    "@lrnwebcomponents/grid-plate": "^7.0.17",
-    "@lrnwebcomponents/play-list": "^7.0.17",
-    "@lrnwebcomponents/count-up": "^7.0.17",
-    "@lrnwebcomponents/simple-cta": "^7.0.17",
-    "@lrnwebcomponents/page-section": "^7.0.17",
-    "@lrnwebcomponents/future-terminal-text": "^7.0.17",
-    "@lrnwebcomponents/utils": "^7.0.17",
-    "@lrnwebcomponents/simple-colors": "^7.0.17",
-    "@lrnwebcomponents/simple-icon": "^7.0.17",
-    "@lrnwebcomponents/simple-img": "^7.0.17",
-    "@lrnwebcomponents/scroll-button": "^7.0.17",
+    "@lrnwebcomponents/grid-plate": "^7.0.18",
+    "@lrnwebcomponents/play-list": "^7.0.18",
+    "@lrnwebcomponents/count-up": "^7.0.18",
+    "@lrnwebcomponents/simple-cta": "^7.0.18",
+    "@lrnwebcomponents/page-section": "^7.0.18",
+    "@lrnwebcomponents/future-terminal-text": "^7.0.18",
+    "@lrnwebcomponents/utils": "^7.0.18",
+    "@lrnwebcomponents/simple-colors": "^7.0.18",
+    "@lrnwebcomponents/simple-icon": "^7.0.18",
+    "@lrnwebcomponents/simple-img": "^7.0.18",
+    "@lrnwebcomponents/scroll-button": "^7.0.18",
     "lit": "^2.8.0"
   },
   "devDependencies": {
