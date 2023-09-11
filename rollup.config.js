@@ -32,7 +32,7 @@ export default {
       targets: [
         {
           src: 'assets/',
-          dest: `${outputDir}/assets`,
+          dest: `${outputDir}/`,
           flatten: false
         },
         {
@@ -42,12 +42,12 @@ export default {
         },
         {
           src: ['node_modules/@lrnwebcomponents/simple-icon/lib/svgs/*', '!elements/simple-icon/lib/svgs/elmsln-custom'],
-          dest: `${outputDir}/node_modules/@lrnwebcomponents/simple-icon/lib/svgs`,
+          dest: `${outputDir}/svgs`,
           flatten: false
         },
         {
           src: 'node_modules/@lrnwebcomponents/hax-iconset/lib/svgs/',
-          dest: `${outputDir}/node_modules/@lrnwebcomponents/hax-iconset/lib`,
+          dest: `${outputDir}/svgs`,
           flatten: false
         },
       ],
