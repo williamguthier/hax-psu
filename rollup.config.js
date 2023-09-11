@@ -1,11 +1,15 @@
 import nodeResolve from '@rollup/plugin-node-resolve';
 import babel from '@rollup/plugin-babel';
-import html from '@web/rollup-plugin-html';
+import { rollupPluginHTML as html } from '@web/rollup-plugin-html';
+
 import { importMetaAssets } from '@web/rollup-plugin-import-meta-assets';
 import { terser } from 'rollup-plugin-terser';
 import { generateSW } from 'rollup-plugin-workbox';
+import pkg from 'rollup-plugin-copy';
+const copy = pkg;
 import path from 'path';
 
+const outputDir = 'dist';
 export default {
   input: 'index.html',
   output: {
@@ -23,6 +27,30 @@ export default {
       minify: true,
       injectServiceWorker: true,
       serviceWorkerPath: 'dist/sw.js',
+    }),
+    copy({
+      targets: [
+        {
+          src: 'assets/',
+          dest: `${outputDir}/assets`,
+          flatten: false
+        },
+        {
+          src: 'node_modules/@lrnwebcomponents/rpg-character/lib/',
+          dest: `${outputDir}/node_modules/@lrnwebcomponents/rpg-character`,
+          flatten: false
+        },
+        {
+          src: ['node_modules/@lrnwebcomponents/simple-icon/lib/svgs/*', '!elements/simple-icon/lib/svgs/elmsln-custom'],
+          dest: `${outputDir}/node_modules/@lrnwebcomponents/simple-icon/lib/svgs`,
+          flatten: false
+        },
+        {
+          src: 'node_modules/@lrnwebcomponents/hax-iconset/lib/svgs/',
+          dest: `${outputDir}/node_modules/@lrnwebcomponents/hax-iconset/lib`,
+          flatten: false
+        },
+      ],
     }),
     /** Resolve bare module imports */
     nodeResolve(),

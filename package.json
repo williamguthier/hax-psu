@@ -21,10 +21,12 @@
     "@lrnwebcomponents/simple-colors": "^7.0.17",
     "@lrnwebcomponents/simple-icon": "^7.0.17",
     "@lrnwebcomponents/simple-img": "^7.0.17",
+    "@lrnwebcomponents/scroll-button": "^7.0.17",
     "lit": "^2.8.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.16.4",
+    "rollup-plugin-copy": "3.4.0",
     "@custom-elements-manifest/analyzer": "^0.4.17",
     "@open-wc/building-rollup": "^2.0.1",
     "@rollup/plugin-babel": "^5.3.0",

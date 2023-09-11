@@ -63,10 +63,67 @@
       --link-color-2: #ccdae6;
       background-color: var(--primary-color-1);
     }
+    hax-psu:not(:defined) {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--primary-color-1);
+    }
+    hax-psu:not(:defined) h1 {
+      margin: 0 auto;
+      color: white;
+      font-size: 5rem;
+      display: inline-block;
+      vertical-align: middle;
+      margin-bottom: 4px;
+      font-family: Roboto, Helvetica, Arial, Lucida, sans-serif;
+      font-weight: bold;
+      letter-spacing: 1px;
+      padding-bottom: 8px;
+      line-height: 1em;
+      text-align: left;
+      font-style: normal;
+      text-transform: none;
+      text-decoration: none;
+    }
+    hax-psu:not(:defined) h1 span.create,
+    hax-psu:not(:defined) h1 span.hax {
+      font-weight: bold;
+      font-size: 3rem;
+      font-style: italic;
+      font-family: "Press Start 2P", Roboto, Helvetica, Arial, Lucida, sans-serif;
+      display: inline-block;
+      vertical-align: middle;
+      margin-bottom: 4px;
+      line-height: 36px;
+      text-align: left;
+    }
+    hax-psu:not(:defined) .load-wrapper {
+      padding: 0px 15%;
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+      height: 100%;
+      position: relative;
+      z-index: 3;
+      width: 70%;
+      max-width: 1080px;
+      margin: 0px auto;
+    }
   </style>
 </head>
 <body vocab="http://schema.org/" prefix="oer:http://oerschema.org cc:http://creativecommons.org/ns dc:http://purl.org/dc/terms/">
-  <hax-psu></hax-psu>
+  <hax-psu>
+    <div class="load-wrapper">
+    <h1><span class="text">Create <span class="create">WEBSITES</span></span>
+      <div>
+        <span class="text">easily with </span><span class="hax">HAX</span>
+      </div>
+    </h1>
+  </div>
+  </hax-psu>
   <script type="module" src="./src/hax-psu.js"></script>
 </body>
 </html>

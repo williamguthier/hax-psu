@@ -1,11 +1,7 @@
 import { LitElement, html, render, css } from 'lit';
-import "@lrnwebcomponents/play-list/play-list.js";
-import "@lrnwebcomponents/grid-plate/grid-plate.js";
-import "@lrnwebcomponents/count-up/count-up.js";
 import "@lrnwebcomponents/simple-cta/simple-cta.js";
 import "@lrnwebcomponents/page-section/page-section.js";
 import "@lrnwebcomponents/future-terminal-text/future-terminal-text.js";
-import "@lrnwebcomponents/simple-img/simple-img.js";
 
 export class HaxPsu extends LitElement {
   static get properties() {
@@ -366,6 +362,16 @@ export class HaxPsu extends LitElement {
         padding-right: 0;
       }
 
+      #top {
+        position: fixed;
+        right: 0;
+        bottom: 125px;
+        z-index: 10000;
+        --simple-icon-width: 48px;
+        --simple-icon-height: 48px;
+        --simple-icon-button-border-radius: none;
+      }
+
       @media (max-width: 1400px) {
         .menu {
           margin-right: 0px;
@@ -436,6 +442,9 @@ export class HaxPsu extends LitElement {
         .menu .menu-item.menu-login {
           display: none;
         }
+        #top {
+          display: none;
+        }
       }
     `;
   }
@@ -443,6 +452,11 @@ export class HaxPsu extends LitElement {
   firstUpdated(changedProperties) {
     super.firstUpdated(changedProperties);
     setTimeout(() => {
+      import("@lrnwebcomponents/simple-img/simple-img.js");
+      import("@lrnwebcomponents/scroll-button/scroll-button.js");
+      import("@lrnwebcomponents/play-list/play-list.js");
+      import("@lrnwebcomponents/grid-plate/grid-plate.js");
+      import("@lrnwebcomponents/count-up/count-up.js");
       this.renderExamplesTemplate();
     }, 0);
     setTimeout(() => {
@@ -608,10 +622,11 @@ export class HaxPsu extends LitElement {
     </header>
     <main>
       <page-section id="section-1" full class="section top" filter accent-color="blue" fold scroller scroller-label="Let's learn about HAX" image="${makeUrl('images/splash.jpg')}">
-        <h1><span class="text">Create <future-terminal-text white
-            glitch class="create">WEBSITES</future-terminal-text></span><div>
-              <span class="text">easily with </span><future-terminal-text
-            glitch class="hax">HAX</future-terminal-text></div></h1>
+        <h1><span class="text">Create <future-terminal-text white glitch class="create">WEBSITES</future-terminal-text></span>
+          <div>
+            <span class="text">easily with </span><future-terminal-text glitch class="hax">HAX</future-terminal-text>
+          </div>
+        </h1>
         <p class="entice-wrapper"><span class="psu-entice">Part of <strong>Penn State</strong>?</span></p>
         <simple-cta slot="buttons" link="https://hax.psu.edu/login.php" accent-color="blue" dark>Log in</simple-cta>
       </page-section>
@@ -708,7 +723,8 @@ export class HaxPsu extends LitElement {
           </ul>
         </div>
       </div>
-    </footer> 
+      <scroll-button id="top" label="Top"></scroll-button>
+    </footer>
     `;
   }
 }
