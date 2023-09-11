@@ -47,7 +47,7 @@ export default {
         },
         {
           src: 'node_modules/@lrnwebcomponents/rpg-character/lib/',
-          dest: `${outputDir}/lib`,
+          dest: `${outputDir}`,
           flatten: false
         },
         {
@@ -56,7 +56,7 @@ export default {
           flatten: false
         },
         {
-          src: 'node_modules/@lrnwebcomponents/hax-iconset/lib/svgs/',
+          src: 'node_modules/@lrnwebcomponents/hax-iconset/lib/svgs/*',
           dest: `${outputDir}/svgs`,
           flatten: false
         },

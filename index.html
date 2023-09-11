@@ -88,6 +88,7 @@
       text-transform: none;
       text-decoration: none;
     }
+
     hax-psu:not(:defined) h1 span.create,
     hax-psu:not(:defined) h1 span.hax {
       font-weight: bold;
@@ -112,17 +113,64 @@
       max-width: 1080px;
       margin: 0px auto;
     }
+    hax-psu:not(:defined) .load-wrapper .psu-entice {
+      color: white;
+      background-color: rgba(0, 0, 0, 0.533);
+      padding: 8px;
+      font-size: 20px;
+    }
+    hax-psu:not(:defined) .load-wrapper .entice-wrapper {
+      display: flex;
+      padding: 0px;
+      margin: 0px 0px 16px;
+      width: 70%;
+      padding: 0 18%;
+    }
+    hax-psu:not(:defined) .load-wrapper a {
+      display: block;
+      text-decoration: none;
+    }
+    hax-psu:not(:defined) .load-wrapper .btn {
+      display: block;
+      border-width: 2px;
+      border-color: var(--secondary-color-1);
+      border-radius: 0px;
+      line-height: 36px;
+      background-color: var(--secondary-color-1);
+      padding: 10px 50px 10px 30px;
+      text-transform: uppercase;
+      color: black;
+      font-family: Roboto, Helvetica, Arial, Lucida, sans-serif;
+      font-style: italic;
+      font-weight: 700;
+      transition: color 300ms ease 0ms, background-color 300ms ease 0ms, border 300ms ease;
+      margin: 0 18%;
+      padding: 16px;
+      font-size: 30px;
+      width: 200px;
+      cursor: pointer;
+    }
+    hax-psu:not(:defined) .load-wrapper .btn:focus,
+    hax-psu:not(:defined) .load-wrapper .btn:hover {
+      background-color: var(--primary-color-1);
+      border-color: white;
+      color: white;
+    }
   </style>
 </head>
 <body vocab="http://schema.org/" prefix="oer:http://oerschema.org cc:http://creativecommons.org/ns dc:http://purl.org/dc/terms/">
   <hax-psu>
     <div class="load-wrapper">
-    <h1><span class="text">Create <span class="create">WEBSITES</span></span>
-      <div>
-        <span class="text">easily with </span><span class="hax">HAX</span>
-      </div>
-    </h1>
-  </div>
+      <h1><span class="text">Create <span class="create">WEBSITES</span></span>
+        <div>
+          <span class="text">easily with </span><span class="hax">HAX</span>
+        </div>
+      </h1>
+      <p class="entice-wrapper"><span class="psu-entice">Part of <strong>Penn State</strong>?</span></p>
+      <a tabindex="-1" href="https://hax.psu.edu/login.php">
+        <button class="btn">Log in &gt;</button>
+      </a>
+    </div>
   </hax-psu>
   <script type="module" src="./src/hax-psu.js"></script>
 </body>

@@ -10,6 +10,9 @@
     "analyze": "cem analyze --litelement",
     "start": "web-dev-server"
   },
+  "resolutions" : {
+    "@shoelace-style/shoelace": "2.8.0"
+  },
   "dependencies": {
     "@lrnwebcomponents/grid-plate": "^7.0.18",
     "@lrnwebcomponents/play-list": "^7.0.18",
@@ -20,9 +23,11 @@
     "@lrnwebcomponents/utils": "^7.0.18",
     "@lrnwebcomponents/simple-colors": "^7.0.18",
     "@lrnwebcomponents/simple-icon": "^7.0.18",
+    "@lrnwebcomponents/hax-iconset": "^7.0.18",
     "@lrnwebcomponents/simple-img": "^7.0.18",
     "@lrnwebcomponents/scroll-button": "^7.0.18",
     "@lrnwebcomponents/rpg-character": "^7.0.18",
+    "@shoelace-style/shoelace": "2.8.0",
     "lit": "^2.8.0"
   },
   "devDependencies": {

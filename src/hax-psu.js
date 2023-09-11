@@ -1,9 +1,8 @@
 import { LitElement, html, render, css, nothing } from 'lit';
-import "@lrnwebcomponents/simple-cta/simple-cta.js";
-import "@lrnwebcomponents/page-section/page-section.js";
-import "@lrnwebcomponents/future-terminal-text/future-terminal-text.js";
 import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js';
 import '@shoelace-style/shoelace/dist/translations/en.js';
+import "@lrnwebcomponents/page-section/page-section.js";
+
 // Set the base path to the folder you copied Shoelace's assets to
 setBasePath('dist/shoelace');
 
@@ -60,6 +59,16 @@ export class HaxPsu extends LitElement {
         letter-spacing: 1px;
         padding-bottom: 8px;
         line-height: 1em;
+        margin: 0;
+      }
+
+      hr.side-line {
+        display: inline-block;
+        width: 9%;
+        margin-bottom: 2.75%;
+        height: 1px;
+        border: none;
+        border-top: 5px solid var(--secondary-color-1);
       }
 
       .logo-wrapper {
@@ -199,11 +208,25 @@ export class HaxPsu extends LitElement {
         margin: 0 0 16px;
       }
 
+      play-list::part(site-wrapper) {
+        display: flex;
+      }
+
+      play-list::part(site-details) {
+        margin: 0 16px;
+      }
+
+      play-list::part(site-type),
       .psu-entice {
         color: white;
         background-color: #00000088;
         padding: 8px;
         font-size: 20px;
+        display:table;
+      }
+
+      play-list::part(site-description) {
+        margin: 0;
       }
 
       .section-style-1 {
@@ -376,6 +399,36 @@ export class HaxPsu extends LitElement {
         --simple-icon-button-border-radius: none;
       }
 
+      details summary {
+        padding: 6px;
+        margin: 16px 0 0 0;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+        color: black;
+      }
+
+      details summary:hover,
+      details summary:focus {
+        background-color: var(--bg-color-2);
+      }
+
+      details[open] summary ~ * {
+        animation: sweep .5s ease-in-out;
+        padding: 16px;
+        background-color: var(--bg-color-2);
+      }
+
+      .rpg-container {
+        margin-bottom: 32px;
+        display: flex;
+        justify-content: space-evenly;
+      }
+
+      @keyframes sweep {
+        0%    {opacity: 0; margin-left: -10px}
+        100%  {opacity: 1; margin-left: 0px}
+      }
+
       @media (max-width: 1400px) {
         .menu {
           margin-right: 0px;
@@ -456,6 +509,8 @@ export class HaxPsu extends LitElement {
   firstUpdated(changedProperties) {
     super.firstUpdated(changedProperties);
     setTimeout(() => {
+      import("@lrnwebcomponents/simple-cta/simple-cta.js");
+      import("@lrnwebcomponents/future-terminal-text/future-terminal-text.js");
       import("@lrnwebcomponents/simple-img/simple-img.js");
       import("@lrnwebcomponents/scroll-button/scroll-button.js");
       import("@lrnwebcomponents/play-list/play-list.js");
@@ -466,14 +521,6 @@ export class HaxPsu extends LitElement {
       import("@shoelace-style/shoelace/dist/components/carousel-item/carousel-item.js");
       this.renderExamplesTemplate();
     }, 0);
-    setTimeout(() => {
-      if (window.location.hash) {
-        const nextTarget = this.shadowRoot.querySelector(`${window.location.hash}`);
-        if (nextTarget && nextTarget.scrollIntoView) {
-          nextTarget.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }
-    }, 1000);
   }
 
     // because of how processed <template> tags work in lit (illegal) we have to specialized way of rendering
@@ -484,13 +531,13 @@ export class HaxPsu extends LitElement {
       html`${this.examples.map(
         (item) =>
           html`
-            <div style="display:flex;">
-              <simple-img fetchpriority="low" decoding="async" src="https://screenshoturl.elmsln.vercel.app/api/screenshotUrl?quality=10&render=img&urlToCapture=${item.image}">
+            <div part="site-wrapper">
+              <simple-img loading="lazy" fetchpriority="low" decoding="async" src="https://screenshoturl.elmsln.vercel.app/api/screenshotUrl?quality=10&render=img&urlToCapture=${item.image}">
               </simple-img>
-              <div style="margin: 0 0 0 16px;">
-                <h3><a href="${item.url}" target="_blank" rel="noopener">${item.title}</a></h3>
-                <div><strong>${item.type}</strong></div>
-                <p>${item.description}</p>
+              <div part="site-details">
+              <simple-cta slot="buttons" link="${item.url}" accent-color="blue" dark>${item.title}</simple-cta>
+                <div part="site-type"><strong>${item.type}</strong></div>
+                <p part="site-description">${item.description}</p>
               </div>
             </div>`
       )}`,
@@ -502,7 +549,21 @@ export class HaxPsu extends LitElement {
   }
 
   constructor() {
-    super();    
+    super();
+    window.addEventListener(
+      "hashchange",
+      () => {
+        setTimeout(() => {
+          if (this.shadowRoot && window.location.hash) {
+            const nextTarget = this.shadowRoot.querySelector(`${window.location.hash}`);
+            if (nextTarget && nextTarget.scrollIntoView) {
+              nextTarget.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          }
+        }, 0);
+      },
+      false,
+    );
     this.title = 'HAX @ PSU';
     this.examples = [
       {
@@ -606,31 +667,22 @@ export class HaxPsu extends LitElement {
     }, 12000);
   }
 
-  scrollToTarget(e) {
-    if (e.target.dataset && e.target.dataset.target) {
-      const nextTarget = this.shadowRoot.querySelector(`#${e.target.dataset.target}`);
-      if (nextTarget && nextTarget.scrollIntoView) {
-        nextTarget.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }
-  }
-
   render() {
     return html`
     <header>
       <div class="logo-wrapper">
         <a href="https://www.psu.edu" title="Penn State" role="link">
-          <img decoding="async" src="${makeUrl('images/Penn-State-Mark.png')}" alt="Nittany Lion Shield Penn State Mark" class="logo" />
+          <img loading="lazy" decoding="async" fetchpriority="low" src="${makeUrl('images/Penn-State-Mark.png')}" alt="Nittany Lion Shield Penn State Mark" class="logo" />
         </a>
       </div>
       <div class="menu">
         <a href="https://hax.psu.edu/login.php" tabindex="-1" class="menu-item menu-login"><button>Login</button></a>
-        <a href="#section-2" tabindex="-1" class="menu-item" @click="${this.scrollToTarget}"><button data-target="section-2">Community</button></a>
-        <a href="#section-3" tabindex="-1" class="menu-item" @click="${this.scrollToTarget}"><button data-target="section-3">Features</button></a>
-        <a href="#section-4" tabindex="-1" class="menu-item" @click="${this.scrollToTarget}"><button data-target="section-4">Testimonials</button></a>
-        <a href="#section-5" tabindex="-1" class="menu-item" @click="${this.scrollToTarget}"><button data-target="section-5">Examples</button></a>
-        <a href="#section-6" tabindex="-1" class="menu-item" @click="${this.scrollToTarget}"><button data-target="section-6">About</button></a>
-        <a href="#section-7" tabindex="-1" class="menu-item" @click="${this.scrollToTarget}"><button data-target="section-7">FAQ</button></a>
+        <a href="#section-2" tabindex="-1" class="menu-item"><button data-target="section-2">Community</button></a>
+        <a href="#section-3" tabindex="-1" class="menu-item"><button data-target="section-3">Features</button></a>
+        <a href="#section-4" tabindex="-1" class="menu-item"><button data-target="section-4">Testimonials</button></a>
+        <a href="#section-5" tabindex="-1" class="menu-item"><button data-target="section-5">Examples</button></a>
+        <a href="#section-6" tabindex="-1" class="menu-item"><button data-target="section-6">About</button></a>
+        <a href="#section-7" tabindex="-1" class="menu-item"><button data-target="section-7">FAQ</button></a>
       </div>
     </header>
     <main>
@@ -646,6 +698,7 @@ export class HaxPsu extends LitElement {
       <page-section id="section-2" class="section" scroller scroller-label="By the numbers">
         <div class="section-style-1">
           <h2>What is HAX?</h2>
+          <hr class="side-line" />
           <p><strong>A radically simple approach to <em>web authoring</em> and <em>content ownership</em>.</strong></p>
           <p>HAX is built on the premise
             that any and everyone should be able to create rich, engaging content without the need for complex platforms, installations or vendor lock-in.
@@ -694,7 +747,7 @@ export class HaxPsu extends LitElement {
         <p>Here are some example of real courses and websites using HAX in production.</p>
         <play-list id="examplestemplate" loop></play-list>
       </page-section>
-      <page-section id="section-6" class="section">
+      <page-section id="section-6" class="section" fold>
         <grid-plate layout="1-1">
           <div slot="col-1">
             <h3>About</h3>
@@ -715,12 +768,93 @@ export class HaxPsu extends LitElement {
           </div>
         </grid-plate>
       </page-section>
+      <page-section id="section-7" class="section">
+        <div class="section-style-1">
+          <h2>Frequently Asked Questions</h2>
+          <hr class="side-line" />
+          <details>
+            <summary>
+              Who can use HAX?
+            </summary>
+            <p>
+              Anyone, anywhere! Thanks to HAX being open source, all you need is a web server and a domain name to get started. We also support publishing directly to GitHub pages and other static publishing tools for advanced developer use-cases. If you are part of Penn State though you can just click <a href="https://hax.psu.edu/login.php">log in</a> to get started immediately!
+            </p>
+          </details>
+          <details>
+            <summary>
+              Who supports HAX?
+            </summary>
+            <p>
+              The HAX user community is supported internal to Penn State by a collaboration between several units including the College of Arts and Architecture,
+              Eberly College of Science, College of Information Sciences and Technology, and University Libraries. HAX also receives contributions from groups outside of Penn State including Buttercups LLC and community members at large.
+            </p>
+          </details>
+          <details>
+            <summary>
+              How do I join the community?
+            </summary>
+            <p>
+              Join our community Discord channel to get support from the community and the HAX team. <a href="https://bit.ly/hax-discord">Join the HAX Discord</a>
+            </p>
+          </details>
+          <details>
+            <summary>
+              Why was HAX created?
+            </summary>
+            <div>
+              <p>
+                HAX is a response to a lack of products existing to meet the needs of producing accessible and engaging web content in online course environments.
+                The university has a rich history of building a mix of custom, open source and buying repurposed commercial products with varying success.
+              </p>
+              <p>
+                HAX was born out of a university Request For Information (RFI) that sought to build a custom Drupal Instructional Content management System (iCMS).
+                After requirements were gathered by stakeholders across the university, it was determined that the best path forward was to build a new kind of solution
+                as the system requirements described were far beyond what any commercial product was offering, and no vendors responded to the Request for proposal after initial RFI process.
+              </p>
+            </div>
+          </details>
+          <details>
+            <summary>
+              How are decisions made?
+            </summary>
+            <p>
+              Decisions about the platform are influenced by a mix of needs from students, faculty and staff either taking courses delivered via the platform or actively building material with the platform.
+              The direction of HAX is steered by the <em>Core Product Development team</em> which meets monthly and is made up of representatives from any
+              group contributing development, design, or other skillsets toward the platform's development and sustainment. If you would like to
+              join the <em>Core Product Development team</em> please contact <a href="mailto:bmr1@psu.edu">Bill Rose, Product Owner</a>.
+            </p>
+          </details>
+          <details>
+            <summary>
+              What's with the 8-bit RPG administration design?
+            </summary>
+            <div>
+            <p>Our 8-bit vibe was a design challenge presented to four College of IST students in the Spring of 2022. They were tasked with
+              creating an over-world design that was fun, inviting, creative, and unique. The team took these requirements and built an
+              experience that is playful, easy to use, and feels more like playing a video game than building a website.
+            </p>
+            <div class="rpg-container">
+              <rpg-character></rpg-character>
+              <rpg-character></rpg-character>
+              <rpg-character></rpg-character>
+              <rpg-character></rpg-character>
+              <rpg-character></rpg-character>
+              <rpg-character></rpg-character>
+            </div>
+            <p>Each RPG style character is unique to the user logging in and helps provide a humanizing and playful element to other aspects
+              of what otherwise would be a mundane administrative interface. Websites produced by HAX can be a mix of professional and platful
+              but the 8-bit design helps you designate between the admin task and what end-users see.
+            </p>
+            </div>
+          </details>
+        </div>
+      </page-section>
     </main>
     <footer>
       <div class="footer-inner">
         <div class="footer-logo">
           <a href="https://www.psu.edu" title="Penn State" role="link">
-            <img decoding="async" src="${makeUrl('images/Penn-State-Mark.png')}" alt="Nittany Lion Shield Penn State Mark" class="logo" />
+            <img loading="lazy" decoding="async" fetchpriority="high" src="${makeUrl('images/Penn-State-Mark.png')}" alt="Nittany Lion Shield Penn State Mark" class="logo" />
           </a>
         </div>
         <div class="footer-left">
@@ -734,7 +868,7 @@ export class HaxPsu extends LitElement {
           <ul>
             <li><a href="https://www.psu.edu/copyright-information/index.html" role="link">The Pennsylvania State University © <span id="YEAR">${this.year}</span></a></li>
             <li><a href="https://hax.psu.edu/login.php" role="link">Login</a></li>
-            <li class="footer-svg"><img decoding="async" src="${makeUrl('images/we-are-penn-state.svg')}" alt="We Are Penn State"></li>
+            <li class="footer-svg"><img loading="lazy" decoding="async" fetchpriority="high" src="${makeUrl('images/we-are-penn-state.svg')}" alt="We Are Penn State"></li>
           </ul>
         </div>
       </div>
