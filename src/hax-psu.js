@@ -677,9 +677,9 @@ export class HaxPsu extends LitElement {
       </div>
       <div class="menu">
         <a href="https://hax.psu.edu/login.php" tabindex="-1" class="menu-item menu-login"><button>Login</button></a>
-        <a href="#section-2" tabindex="-1" class="menu-item"><button data-target="section-2">Community</button></a>
-        <a href="#section-3" tabindex="-1" class="menu-item"><button data-target="section-3">Features</button></a>
-        <a href="#section-4" tabindex="-1" class="menu-item"><button data-target="section-4">Testimonials</button></a>
+        <a href="#section-2" tabindex="-1" class="menu-item"><button data-target="section-2">HAX</button></a>
+        <a href="#section-3" tabindex="-1" class="menu-item"><button data-target="section-3">Usage</button></a>
+        <a href="#section-4" tabindex="-1" class="menu-item"><button data-target="section-4">Users</button></a>
         <a href="#section-5" tabindex="-1" class="menu-item"><button data-target="section-5">Examples</button></a>
         <a href="#section-6" tabindex="-1" class="menu-item"><button data-target="section-6">About</button></a>
         <a href="#section-7" tabindex="-1" class="menu-item"><button data-target="section-7">FAQ</button></a>
