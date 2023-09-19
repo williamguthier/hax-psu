@@ -621,16 +621,9 @@ export class HaxPsu extends LitElement {
     this.stats = {};
     this.year = new Date().getFullYear();
     this.image = '';
-    let base = '';
-    if (
-      window.location.origin.startsWith("http://127.0.0.1") ||
-      window.location.origin.startsWith("http://localhost")
-    ) {
-      base = window.location.origin
-        .replace(/127.0.0.1:8(.*)/, "localhost:3000")
-        .replace(/localhost:8(.*)/, "localhost:3000");
-    }
-    fetch(`${base}/api/stats`).then((res) => {
+    // these stats come from nightly rebuilds against STAGING data
+    // to avoid computation on live but is mirrored content from day prior
+    fetch(`https://haxapi.vercel.app/api/services/stats/haxPsuUsage`).then((res) => {
       if (res.ok) {
         return res.json();
       }
@@ -676,7 +669,7 @@ export class HaxPsu extends LitElement {
         </a>
       </div>
       <div class="menu">
-        <a href="https://hax.psu.edu/login.php" tabindex="-1" class="menu-item menu-login"><button>Login</button></a>
+        <a href="https://iam.hax.psu.edu/login.php" tabindex="-1" class="menu-item menu-login"><button>Login</button></a>
         <a href="#section-2" tabindex="-1" class="menu-item"><button data-target="section-2">HAX</button></a>
         <a href="#section-3" tabindex="-1" class="menu-item"><button data-target="section-3">Usage</button></a>
         <a href="#section-4" tabindex="-1" class="menu-item"><button data-target="section-4">Users</button></a>
@@ -693,7 +686,7 @@ export class HaxPsu extends LitElement {
           </div>
         </h1>
         <p class="entice-wrapper"><span class="psu-entice">Part of <strong>Penn State</strong>?</span></p>
-        <simple-cta slot="buttons" link="https://hax.psu.edu/login.php" accent-color="blue" dark>Log in</simple-cta>
+        <simple-cta slot="buttons" link="https://iam.hax.psu.edu/login.php" accent-color="blue" dark>Log in</simple-cta>
       </page-section>
       <page-section id="section-2" class="section" scroller scroller-label="By the numbers">
         <div class="section-style-1">
@@ -777,7 +770,7 @@ export class HaxPsu extends LitElement {
               Who can use HAX?
             </summary>
             <p>
-              Anyone, anywhere! Thanks to HAX being open source, all you need is a web server and a domain name to get started. We also support publishing directly to GitHub pages and other static publishing tools for advanced developer use-cases. If you are part of Penn State though you can just click <a href="https://hax.psu.edu/login.php">log in</a> to get started immediately!
+              Anyone, anywhere! Thanks to HAX being open source, all you need is a web server and a domain name to get started. We also support publishing directly to GitHub pages and other static publishing tools for advanced developer use-cases. If you are part of Penn State though you can just click <a href="https://iam.hax.psu.edu/login.php">log in</a> to get started immediately!
             </p>
           </details>
           <details>
@@ -867,7 +860,7 @@ export class HaxPsu extends LitElement {
           </ul>
           <ul>
             <li><a href="https://www.psu.edu/copyright-information/index.html" role="link">The Pennsylvania State University © <span id="YEAR">${this.year}</span></a></li>
-            <li><a href="https://hax.psu.edu/login.php" role="link">Login</a></li>
+            <li><a href="https://iam.hax.psu.edu/login.php" role="link">Login</a></li>
             <li class="footer-svg"><img loading="lazy" decoding="async" fetchpriority="high" src="${makeUrl('images/we-are-penn-state.svg')}" alt="We Are Penn State"></li>
           </ul>
         </div>
